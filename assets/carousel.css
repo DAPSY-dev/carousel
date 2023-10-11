@@ -1,0 +1,31 @@
+.js-carousel {
+  --slides-count: 1;
+  --carousel-screen: 0;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  touch-action: none;
+}
+
+.js-carousel:before,
+.js-carousel:after,
+.js-carousel *,
+.js-carousel *:before,
+.js-carousel *:after {
+  box-sizing: inherit;
+}
+
+.js-carousel-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  transform: translateX(calc(-100% * var(--carousel-screen)));
+  transition: transform 0.3s ease;
+}
+
+.js-carousel-slide {
+  --slide-width: calc(100% / var(--slides-count));
+  flex: 1 0 var(--slide-width);
+  width: var(--slide-width);
+  max-width: var(--slide-width);
+}

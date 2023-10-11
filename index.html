@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel</title>
+    <link rel="stylesheet" href="./assets/carousel.css">
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+
+      .carousel {
+        --slides-count: 4;
+        --carousel-screen: 0;
+        margin: 10vmin;
+      }
+
+      .carousel__img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .carousel__dot.is-active {
+        font-weight: 700;
+      }
+
+      .carousel__slide .carousel__img {
+        opacity: 0.25;
+        transition: opacity 0.3s ease;
+      }
+
+      .carousel__slide.in-view .carousel__img {
+        opacity: 1;
+      }
+
+      @media (max-width: 1024px) {
+        .carousel {
+          --slides-count: 3;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .carousel {
+          --slides-count: 2;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .carousel {
+          --slides-count: 1;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <div class="carousel js-carousel" data-id="carousel1">
+      <div class="js-carousel-wrapper">
+        <div class="carousel__slide js-carousel-slide">
+          <img src="http://placekitten.com/320/241" alt="Cat" class="carousel__img">
+        </div>
+        <div class="carousel__slide js-carousel-slide">
+          <img src="http://placekitten.com/321/240" alt="Cat" class="carousel__img">
+        </div>
+        <div class="carousel__slide js-carousel-slide">
+          <img src="http://placekitten.com/322/240" alt="Cat" class="carousel__img">
+        </div>
+        <div class="carousel__slide js-carousel-slide">
+          <img src="http://placekitten.com/323/240" alt="Cat" class="carousel__img">
+        </div>
+        <div class="carousel__slide js-carousel-slide">
+          <img src="http://placekitten.com/324/240" alt="Cat" class="carousel__img">
+        </div>
+        <div class="carousel__slide js-carousel-slide">
+          <img src="http://placekitten.com/325/240" alt="Cat" class="carousel__img">
+        </div>
+        <div class="carousel__slide js-carousel-slide">
+          <img src="http://placekitten.com/326/240" alt="Cat" class="carousel__img">
+        </div>
+        <div class="carousel__slide js-carousel-slide">
+          <img src="http://placekitten.com/327/240" alt="Cat" class="carousel__img">
+        </div>
+        <div class="carousel__slide js-carousel-slide">
+          <img src="http://placekitten.com/329/240" alt="Cat" class="carousel__img">
+        </div>
+      </div>
+      <nav>
+        <button type="button" class="js-carousel-prev">Previous</button>
+        <div class="js-carousel-dots"></div>
+        <button type="button" class="js-carousel-next">Next</button>
+      </nav>
+    </div>
+
+    <script src="./assets/carousel.js"></script>
+    <script>
+      'use strict'
+
+      window.addEventListener('DOMContentLoaded', () => {
+        const carouselEls = [...document.querySelectorAll('.js-carousel')]
+        window['carouselInstances'] = {}
+        for (const carouselEl of carouselEls) {
+          window['carouselInstances'][carouselEl.dataset.id] = new Carousel(carouselEl, {
+            dotClassName: 'carousel__dot',
+          })
+        }
+      })
+    </script>
+  </body>
+</html>
